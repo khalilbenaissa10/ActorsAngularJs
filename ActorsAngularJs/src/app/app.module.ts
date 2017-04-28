@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {PopupModule} from 'ng2-opd-popup';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -15,6 +16,9 @@ import { ActorsComponent } from './actor/actors.component';
 import { ActorListComponent } from './actor/actor-list/actor-list.component';
 import { ActorItemComponent } from './actor/actor-list/actor-item.component';
 import { MovieDetailComponent } from './movie/movie-detail/movie-detail.component';
+import {AppRoutingModule} from './app-routing.module';
+import { MovieAddComponent } from './movie/movie-add/movie-add.component';
+import { MovieNavbarComponent } from './movie/movie-navbar/movie-navbar.component';
 
 
 
@@ -30,13 +34,18 @@ import { MovieDetailComponent } from './movie/movie-detail/movie-detail.componen
     ActorsComponent,
     ActorListComponent,
     ActorItemComponent,
-    MovieDetailComponent
+    MovieDetailComponent,
+    MovieAddComponent,
+    MovieNavbarComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    PopupModule.forRoot()
+    PopupModule.forRoot(),
+    AppRoutingModule,
+     SimpleNotificationsModule.forRoot()
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

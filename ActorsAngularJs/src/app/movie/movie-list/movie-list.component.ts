@@ -8,16 +8,34 @@ import {MovieService} from '../movie.service';
 })
 export class MovieListComponent implements OnInit {
 
+  
+
 movies:Movie[];
+
   constructor(private movieService:MovieService) { }
 
   ngOnInit() {
+    console.log("message from ngoninit");
+    
     this.movies = [];
         this.movieService.getMovies()
          .subscribe(
-            data => this.movies = data 
+            data => {this.movies = data ;
+                  }
          );
         
+
+         
+        
   }
+
+
+
+
+
+  public doSomething() {
+       console.log("hello from dosomething");
+        location.reload();
+    }
 
 }

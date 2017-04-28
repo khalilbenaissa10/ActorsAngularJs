@@ -25,7 +25,6 @@ export class MovieItemComponent implements OnInit {
 
 
   cliquer(movie : Movie){
-    console.log("cliquer !!");
     this.selectedMovie = movie;
     this.detail.ClickButton(this.selectedMovie);
     

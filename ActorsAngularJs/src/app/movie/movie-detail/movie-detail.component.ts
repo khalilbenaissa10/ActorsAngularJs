@@ -1,7 +1,9 @@
-import { Component, ViewChild,Input } from '@angular/core';
+import { Component, ViewChild,Input,EventEmitter,Output } from '@angular/core';
 import {Popup} from 'ng2-opd-popup';
+import {Router} from '@angular/router';
 
-import {Movie} from '../movie'
+import {Movie} from '../movie';
+import {MovieService} from '../movie.service';
 
 @Component({
   selector: 'rb-movie-detail',
@@ -14,11 +16,17 @@ export class MovieDetailComponent  {
 
  @ViewChild('popup1') popup1: Popup;
 
+  @Output() clicked: EventEmitter<any> = new EventEmitter();
+
 @Input()
  movie : Movie;
 
-  constructor() { }
+  constructor(private movieService:MovieService,
+              private router : Router
+              ) { }
 
+
+               
 
  ClickButton(movie : Movie){
 
@@ -37,6 +45,15 @@ export class MovieDetailComponent  {
 };
     
     this.popup1.show(this.popup1.options);
+  }
+
+  deleteActor(movie:Movie){
+  this.movieService.deleteMovie(this.movie.id).then(()=> {
+    
+             this.popup1.hide();
+             this.clicked.emit();
+             
+            }) ;
   }
   
 }

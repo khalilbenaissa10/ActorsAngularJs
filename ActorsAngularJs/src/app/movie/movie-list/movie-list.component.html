@@ -3,7 +3,7 @@
    <rb-movie-item *ngFor="let movie of movies" [movie]="movie" [detail]="detail"></rb-movie-item>
    
   </div>
-  <rb-movie-detail #detail ></rb-movie-detail>
+  <rb-movie-detail (clicked)="doSomething()" #detail ></rb-movie-detail>
 <!--  
  <!-- Second Photo Grid
   <div class="w3-row-padding w3-padding-16 w3-center">
