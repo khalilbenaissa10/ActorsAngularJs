@@ -34,12 +34,12 @@
         <option *ngFor="let year of years" [value]="year">{{year}}</option>
   </select>
     </div >
-    <div >
+    <div *ngIf="firstIf" >
     <h1> Actors : </h1>
     <h1>
     <ul class="khalil">
             <li  template = "ngFor let actor of movie?.actors; let i = index">
-                  {{actor?.name}}   <button type="button" class="btn btn-danger" (click)="deleteActor(actor)" >Delete</button> <br/><br/>
+                  {{actor?.name}}   <button type="button" class="btn btn-danger" (click)="deleteActor(actor,i)" >Delete</button> <br/><br/>
             </li>
             
             

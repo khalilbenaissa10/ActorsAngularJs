@@ -22,6 +22,9 @@ export class MovieUpdateComponent implements OnInit {
   private movie :Movie;
 
   private allActors:Actor[];
+  private firstIf : Boolean = false ;
+  private secondIf : Boolean = false ;
+   private  j =-1;
 
      years = ['2017', '2016', '2015', '2014','2013','2012','2011','2010','2009','2008','2007','2006','2005'];
 
@@ -48,14 +51,18 @@ export class MovieUpdateComponent implements OnInit {
                      '2017',
                       []);
      this.activatedRoute.params.switchMap((params:Params) => this.movieService.getMovie(+params['id']))
-      .subscribe(movie => this.movie = movie);
+      .subscribe(movie => {this.movie = movie;
+                          if (this.movie.actors.length !=0)
+                           { this.firstIf =true ;}
+    });
       
          this.allActors = [];
         this.actorService.getActors()
-         .subscribe(
-            data => this.allActors = data 
+         .subscribe(data =>{
+             this.allActors = data ;
             
-         );
+            
+         });
 
         
       
@@ -77,20 +84,33 @@ export class MovieUpdateComponent implements OnInit {
 
 
   deleteActor(actor:Actor){
-
+console.log(actor);
 this.movieService.deleteActorFromMovie(actor.id,this.movie.id).then(()=> {
-    
+            
              location.reload();
              
             }) ;
   }
 
   addActor(actor){
-    this.movieService.addActorToMovie(this.movie.id,actor).then(()=> {
+   
+    for (var i = 0; i < this.movie.actors.length; i++) {
+           if((this.movie.actors[i].name).toString() == (actor.name).toString() ){
+               console.log("hello") ; 
+               this.j = i;
+               
+               
+           }
+           if(this.j != -1){
+              console.log(this.j);
+           }
+          
+    } 
+    //this.movieService.addActorToMovie(this.movie.id,actor).then(()=> {
     
-             location.reload();
+          //   location.reload();
              
-            }) ;
+         //   }) ;
   }
 
 }

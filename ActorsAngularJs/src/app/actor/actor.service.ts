@@ -18,7 +18,6 @@ export class ActorService {
 
 
     getActors(){
-       console.log("message from service actor");
        return this.http.get(this.endpoint_url).map(res => res.json());
     }
 
