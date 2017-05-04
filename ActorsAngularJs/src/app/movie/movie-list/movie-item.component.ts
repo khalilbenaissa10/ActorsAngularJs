@@ -1,4 +1,5 @@
 import { Component, Input,OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 import {Movie} from '../movie';
 import {MovieDetailComponent} from '../movie-detail/movie-detail.component';
@@ -17,7 +18,7 @@ export class MovieItemComponent implements OnInit {
     @Input() detail:MovieDetailComponent;
      
 
-  constructor() { }
+  constructor(private route : Router) { }
 
   ngOnInit() {
   }
@@ -27,6 +28,11 @@ export class MovieItemComponent implements OnInit {
   cliquer(movie : Movie){
     this.selectedMovie = movie;
     this.detail.ClickButton(this.selectedMovie);
+    
+  }
+
+   editer(movie : Movie){
+      this.route.navigate(['/movies',movie.id]);
     
   }
 

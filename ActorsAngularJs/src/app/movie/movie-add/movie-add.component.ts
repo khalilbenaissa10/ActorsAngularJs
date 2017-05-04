@@ -18,19 +18,24 @@ import {MovieService} from '../movie.service';
   border-left: 5px solid #a94442; /* red */
 }`]
 })
+
+
 export class MovieAddComponent {
 
    years = ['2017', '2016', '2015', '2014','2013','2012','2011','2010','2009','2008','2007','2006','2005'];
 
   public options = {
-    position: ["bottom", "left"],
-    timeOut: 5000,
-    lastOnBottom: true
+     timeOut: 3000,
+      position: ["top", "right"],
+       showProgressBar: true,
+       pauseOnHover: false,
+      clickToClose: false,
+      maxLength: 100
 }
 
   constructor(private movieService:MovieService,
                private router:Router,
-               private _service: NotificationsService ){}
+               private _notificationsService: NotificationsService ){}
 
    model = new Movie( 5,
                      'Manchester by the sea',
@@ -40,24 +45,23 @@ export class MovieAddComponent {
 
   submitted = false;
 
- 
 
-  onSubmit() {
+  onSubmit() {        
     
-    if(this.model.year.length ==4) {
-              this.submitted = true;
-               this.movieService.addMovie(this.model).then(model =>{
-                 this.model=null;
-             this.router.navigate(['/movies']);
-        
-                });
-    }
-    else{alert("year must be 4")} ;
-                
-            
-           
-        
-            
+
+
+                 this._notificationsService.success(
+                    'Film ajouté avec succés',
+                    this.model.title ,
+                     this.options);   
+                  
+                  this.submitted = true;
+                  this.movieService.addMovie(this.model).then(model =>{  
+                   setTimeout(() => {
+                      this.router.navigate(['/movies']);
+                    }, 3000) ;   
+                      }); 
+          
   }
  
 

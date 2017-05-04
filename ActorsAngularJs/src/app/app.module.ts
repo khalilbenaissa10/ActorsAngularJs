@@ -19,6 +19,7 @@ import { MovieDetailComponent } from './movie/movie-detail/movie-detail.componen
 import {AppRoutingModule} from './app-routing.module';
 import { MovieAddComponent } from './movie/movie-add/movie-add.component';
 import { MovieNavbarComponent } from './movie/movie-navbar/movie-navbar.component';
+import { MovieUpdateComponent } from './movie/movie-update/movie-update.component';
 
 
 
@@ -36,7 +37,8 @@ import { MovieNavbarComponent } from './movie/movie-navbar/movie-navbar.componen
     ActorItemComponent,
     MovieDetailComponent,
     MovieAddComponent,
-    MovieNavbarComponent
+    MovieNavbarComponent,
+    MovieUpdateComponent
   ],
   imports: [
     BrowserModule,

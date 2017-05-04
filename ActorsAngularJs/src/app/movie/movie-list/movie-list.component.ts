@@ -15,8 +15,18 @@ movies:Movie[];
   constructor(private movieService:MovieService) { }
 
   ngOnInit() {
-    console.log("message from ngoninit");
-    
+    this.movies = [];
+        this.movieService.getMovies()
+         .subscribe(
+            data => {this.movies = data ;
+                  }
+         );
+        
+
+         
+        
+  }
+    ngAfterViewInit() {
     this.movies = [];
         this.movieService.getMovies()
          .subscribe(
@@ -34,7 +44,6 @@ movies:Movie[];
 
 
   public doSomething() {
-       console.log("hello from dosomething");
         location.reload();
     }
 
